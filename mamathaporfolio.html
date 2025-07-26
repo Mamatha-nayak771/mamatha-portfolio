@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Mamatha Dharavath | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #3a3a8e;
+      --accent: #12a4d9;
+      --bg: #f9f9fb;
+      --card: #fff;
+      --text: #222;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      line-height: 1.7;
+    }
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 2rem 1rem 1.5rem 1rem;
+      text-align: center;
+    }
+    header h1 { margin-bottom: .2em; }
+    header h2 { font-weight: 400; margin-top: 0; margin-bottom: 0.5em;}
+    .contacts a {
+      color: #fff;
+      text-decoration: underline;
+      margin: 0 .8em;
+      font-size: 1rem;
+    }
+    .container {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    section {
+      background: var(--card);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(60,60,90,0.08);
+      margin: 2rem 0 0 0;
+      padding: 2rem;
+    }
+    section h3 {
+      color: var(--primary);
+      margin-top: 0;
+      margin-bottom: 1em;
+    }
+    ul, .skill-list, .cert-list, .lang-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    .skill-list li, .cert-list li, .lang-list li {
+      margin-bottom: 0.5rem;
+      padding-left: 1.2em;
+      position: relative;
+    }
+    .skill-list li::before, .cert-list li::before, .lang-list li::before {
+      content: "•";
+      color: var(--accent);
+      position: absolute;
+      left: 0;
+    }
+    .project {
+      margin-bottom: 1.7rem;
+    }
+    .project:last-child { margin-bottom: 0; }
+    .project-title { font-weight: bold; font-size: 1.1rem; color: var(--accent); }
+    .tech-used { font-size: 0.97rem; color: #7878a1;}
+    @media (max-width: 520px) {
+      section { padding: 1em;}
+      header { padding: 1.5em .5em 1em .5em;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mamatha Dharavath</h1>
+    <h2>Student | Aspiring Full Stack Developer</h2>
+    <div class="contacts">
+      <a href="mailto:mamathadharavath1304@gmail.com">Email</a> | 
+      <a href="tel:+919502491109">+91 95024 91109</a> | 
+      <a href="https://linkedin.com/in/mamathadharavath" target="_blank">LinkedIn</a>
+    </div>
+  </header>
+  <main class="container">
+    <section>
+      <h3>Professional Summary</h3>
+      <p>
+        Motivated and detail-oriented Computer Science undergraduate with a solid foundation in full-stack development, programming, and databases. Skilled in building responsive web applications with modern frameworks and languages. Proven experience in impactful machine learning and AI projects. Effective communicator with a collaborative mindset; driven by continuous learning and growth.
+      </p>
+    </section>
+    <section>
+      <h3>Education</h3>
+      <ul>
+        <li>
+          <b>B.Tech, Computer Science and Engineering</b><br>
+          Malla Reddy Institute of Engineering & Technology (MRIET), Hyderabad<br>
+          CGPA: 7.68 (Expected 2025)
+        </li>
+        <li>
+          <b>Senior Secondary (Class XII), CBSE</b><br>
+          Kendriya Vidyalaya, Hyderabad <br>
+          Percentage: 86% (2020)
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3>Technical Skills</h3>
+      <ul class="skill-list">
+        <li><b>Languages:</b> HTML, CSS, JavaScript, Python, C++, Java</li>
+        <li><b>Frameworks & Libraries:</b> React.js, Node.js</li>
+        <li><b>Databases:</b> MySQL</li>
+        <li><b>Tools & Technologies:</b> Git, VS Code, REST APIs</li>
+        <li><b>Core Competencies:</b> Full Stack Development, Machine Learning Integration, UI/UX Design, Responsive Web Development</li>
+      </ul>
+    </section>
+    <section>
+      <h3>Projects</h3>
+      <div class="project">
+        <div class="project-title">Cyberbullying Detection on Social Media</div>
+        <div class="tech-used">HTML, CSS, Python, Machine Learning, NLP</div>
+        <ul>
+          <li>Built a real-time web app that detects offensive and harmful content using NLP.</li>
+          <li>Implemented instant alerts and moderation tools for safer interactions.</li>
+        </ul>
+      </div>
+      <div class="project">
+        <div class="project-title">AI-Powered Medical Chatbot for Infectious Disease Prediction</div>
+        <div class="tech-used">Python, JavaScript, HTML, CSS</div>
+        <ul>
+          <li>Developed an AI-based chatbot predicting infectious diseases from symptom inputs.</li>
+          <li>Integrated with healthcare data and explored real-time monitoring via wearable devices.</li>
+        </ul>
+      </div>
+      <!-- Add more projects here as you build! -->
+    </section>
+    <section>
+      <h3>Certifications</h3>
+      <ul class="cert-list">
+        <li>Build Your Own Static Website – Nxtwave</li>
+        <li>Build Your Own Responsive Website – Nxtwave</li>
+        <li>Introduction to Databases – Nxtwave</li>
+        <li>Software Engineering Job Simulation – Forage</li>
+        <li>Advanced C++ Programming – Skillup</li>
+        <li>Introduction to Artificial Intelligence – Skillup</li>
+      </ul>
+    </section>
+    <section>
+      <h3>Core Skills</h3>
+      <ul class="skill-list">
+        <li>Leadership & Team Collaboration</li>
+        <li>Project Management</li>
+        <li>Critical Thinking & Problem Solving</li>
+        <li>Effective Communication</li>
+        <li>Time Management</li>
+      </ul>
+    </section>
+    <section>
+      <h3>Languages</h3>
+      <ul class="lang-list">
+        <li>English: Full Professional Proficiency</li>
+        <li>Hindi: Full Professional Proficiency</li>
+        <li>Telugu: Full Professional Proficiency</li>
+      </ul>
+    </section>
+    <section>
+      <h3>Connect with Me</h3>
+      <p>Check out my <a href="https://linkedin.com/in/mamathadharavath" target="_blank">LinkedIn</a> for more information. Email: <a href="mailto:mamathadharavath1304@gmail.com">mamathadharavath1304@gmail.com</a></p>
+    </section>
+  </main>
+</body>
+</html>
