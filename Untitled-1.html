@@ -1,0 +1,379 @@
+<!--
+Premium single-file portfolio for: Mamatha Dharavath
+Tagline: Software Developer
+
+Instructions:
+1. Save this file as `index.html` and open in a browser.
+2. To host: push to GitHub and enable GitHub Pages OR upload to any static host.
+3. Contact form: by default it shows a client-side success message. To enable real email delivery:
+   - Option A (Formspree): replace FORMSPREE_ENDPOINT = '' in the script with your Formspree endpoint URL (e.g. https://formspree.io/f/xxxx).
+   - Option B (EmailJS): replace the contact form handler with your EmailJS code (not included).
+
+No external libraries used. All CSS and JS are embedded for a single-file drop-in.
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mamatha Dharavath — Software Developer</title>
+  <meta name="description" content="Portfolio — Mamatha Dharavath | Software Developer" />
+
+  <style>
+    /* ------------------ Base ------------------ */
+    :root{
+      --bg:#060b26; /* dark blue */
+      --card:#0a1a45;
+      --muted:#9fbef9;
+      --accent:#4da3ff;
+      --glass: rgba(255,255,255,0.03);
+      --text:#eaf3ff;
+      --soft:#a9c9ff;
+      --shadow: 0 6px 18px rgba(2,6,23,0.6);
+    }
+    [data-theme='light']{
+      --bg: #f4f7ff;
+      --card: #ffffff;
+      --muted: #2a3b65;
+      --accent: #0b4ef6;
+      --glass: rgba(6,11,38,0.03);
+      --text: #061233;
+      --soft: #345;
+      --shadow: 0 8px 22px rgba(8,15,40,0.06);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+    body{background:linear-gradient(180deg,var(--bg), #030417 140%);color:var(--text);-webkit-font-smoothing:antialiased}
+
+    a{color:inherit}
+    img{max-width:100%;height:auto}
+
+    /* ------------------ Layout ------------------ */
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+
+    /* NAVBAR */
+    nav.nav{position:fixed;left:0;right:0;top:12px;margin:0 auto;max-width:1200px;padding:12px 20px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;border:1px solid rgba(255,255,255,0.03);backdrop-filter: blur(6px);box-shadow:var(--shadow);display:flex;gap:24px;align-items:center;z-index:999}
+    .brand{font-weight:700;color:var(--accent);font-size:18px}
+    .brand small{display:block;font-weight:600;color:var(--muted);font-size:11px}
+    .nav-links{margin-left:auto;display:flex;gap:18px;align-items:center}
+    .nav-links a{padding:8px 12px;border-radius:8px;text-decoration:none;color:var(--text);font-weight:600;font-size:14px}
+    .nav-links a.active{background:linear-gradient(90deg, rgba(77,163,255,0.12), rgba(77,163,255,0.06));color:var(--accent)}
+
+    /* Hamburger for mobile */
+    .hamburger{display:none;cursor:pointer;padding:8px;border-radius:8px}
+
+    /* Theme toggle */
+    .toggle{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:10px;background:var(--glass);border:1px solid rgba(255,255,255,0.03);font-weight:600}
+
+    /* Hero */
+    header.hero{min-height:100vh;display:grid;align-items:center;padding:120px 18px 80px}
+    .hero-inner{display:grid;gap:18px}
+    .hi{font-size:16px;color:var(--muted);font-weight:600}
+    h1.name{font-size:48px;line-height:1;margin:0}
+    p.tag{font-size:20px;color:var(--muted);margin:6px 0 0}
+
+    .cta{display:flex;gap:12px;margin-top:18px}
+    .btn{padding:10px 16px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
+    .btn.primary{background:linear-gradient(90deg,var(--accent), #2aa2ff);color:white}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text)}
+
+    /* Typewriter */
+    .typewriter{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;background: linear-gradient(90deg,var(--muted),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+    /* Sections */
+    section{padding:80px 20px}
+    .section-title{font-size:28px;color:var(--accent);margin-bottom:10px}
+    .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);box-shadow:var(--shadow)}
+
+    /* Skills */
+    .skills{display:flex;flex-wrap:wrap;gap:12px}
+    .pill{background:transparent;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.04);font-weight:700}
+
+    /* Projects grid */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .project{padding:16px;border-radius:12px;border-left:4px solid var(--accent);background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+    .project h3{margin:0 0 8px}
+    .project p{margin:0 0 12px;color:var(--soft)}
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{font-size:12px;padding:6px 8px;border-radius:8px;border:1px solid rgba(255,255,255,0.03)}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 380px;gap:18px}
+    label{display:block;font-weight:700;font-size:13px;margin-bottom:6px}
+    input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--text);resize:vertical}
+    textarea{min-height:120px}
+    .success{padding:12px;border-radius:8px;background:linear-gradient(90deg, rgba(77,163,255,0.12), rgba(77,163,255,0.06));color:var(--accent);font-weight:700}
+
+    /* Footer */
+    footer{padding:28px 18px;text-align:center;color:var(--muted)}
+
+    /* small screens */
+    @media (max-width:980px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .contact-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:700px){
+      nav.nav{padding:10px 12px}
+      .nav-links{display:none}
+      .hamburger{display:block}
+      .hero-inner{padding:0 6px}
+      .grid{grid-template-columns:1fr}
+      header.hero{padding:160px 12px 80px}
+    }
+
+    /* ------------------ Animations ------------------ */
+    .fade-in{opacity:0;transform:translateY(16px);transition:all 600ms cubic-bezier(.2,.9,.2,1)}
+    .fade-in.show{opacity:1;transform:none}
+    .slide-left{opacity:0;transform:translateX(18px);transition:all 600ms cubic-bezier(.2,.9,.2,1)}
+    .slide-left.show{opacity:1;transform:none}
+
+    /* Type cursor */
+    .cursor{display:inline-block;width:2px;height:1.2em;background:var(--accent);margin-left:6px;vertical-align:bottom;animation:blink 900ms steps(2) infinite}
+    @keyframes blink{50%{opacity:0}}
+
+    /* subtle hover */
+    .project:hover{transform:translateY(-6px);transition:transform 220ms}
+
+  </style>
+</head>
+<body data-theme="dark">
+
+  <nav class="nav container" id="navbar">
+    <div>
+      <div class="brand">Mamatha <small>Dharavath</small></div>
+    </div>
+
+    <div class="nav-links" id="navLinks">
+      <a href="#home" data-link>Home</a>
+      <a href="#about" data-link>About</a>
+      <a href="#skills" data-link>Skills</a>
+      <a href="#projects" data-link>Projects</a>
+      <a href="#contact" data-link>Contact</a>
+      <div class="toggle" title="Toggle theme" id="themeToggle">🌙 &nbsp; Theme</div>
+    </div>
+
+    <div class="hamburger" id="hamburger">☰</div>
+  </nav>
+
+  <main>
+    <header class="hero container" id="home">
+      <div class="hero-inner">
+        <div class="hi fade-in">Hello — welcome to my portfolio</div>
+        <h1 class="name fade-in">Mamatha Dharavath <span class="typewriter typeText"></span><span class="cursor"></span></h1>
+        <p class="tag fade-in">Software Developer</p>
+
+        <div class="cta fade-in">
+          <button class="btn primary" onclick="scrollToSection('projects')">View Work</button>
+          <a class="btn ghost" href="#contact">Contact Me</a>
+        </div>
+      </div>
+    </header>
+
+    <section id="about" class="container fade-in">
+      <div class="card">
+        <h2 class="section-title">About Me</h2>
+        <p style="margin-top:8px;color:var(--soft)">I build user-friendly, accessible web applications with a focus on clean design and solid engineering. Currently working on full-stack projects using JavaScript, React and Node.</p>
+      </div>
+    </section>
+
+    <section id="skills" class="container fade-in">
+      <h2 class="section-title">Skills</h2>
+      <div style="margin-top:12px" class="skills">
+        <div class="pill">HTML</div>
+        <div class="pill">CSS</div>
+        <div class="pill">JavaScript</div>
+        <div class="pill">React</div>
+        <div class="pill">Node.js</div>
+        <div class="pill">SQLite</div>
+        <div class="pill">Git</div>
+      </div>
+    </section>
+
+    <section id="projects" class="container">
+      <h2 class="section-title fade-in">Projects</h2>
+      <div id="projectsGrid" class="grid" style="margin-top:14px"></div>
+    </section>
+
+    <section id="contact" class="container">
+      <h2 class="section-title fade-in">Contact</h2>
+      <div class="contact-grid" style="margin-top:12px">
+        <div class="card fade-in">
+          <h3>Reach out</h3>
+          <p style="color:var(--soft)">Prefer email? Fill the form and I will respond within a few days.</p>
+          <div style="margin-top:10px"><strong>Email:</strong> <a href="mailto:youremail@gmail.com">youremail@gmail.com</a></div>
+          <div style="margin-top:8px"><strong>Phone:</strong> +91 XXXXX XXXXX</div>
+        </div>
+
+        <form id="contactForm" class="card fade-in" autocomplete="off">
+          <div style="display:flex;gap:10px;margin-bottom:10px">
+            <div style="flex:1">
+              <label for="name">Name</label>
+              <input id="name" name="name" required />
+            </div>
+            <div style="width:140px">
+              <label for="subject">Subject</label>
+              <input id="subject" name="subject" />
+            </div>
+          </div>
+          <div style="margin-bottom:10px">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required />
+          </div>
+          <div style="margin-bottom:12px">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+
+          <div style="display:flex;gap:10px;align-items:center">
+            <button type="submit" class="btn primary">Send message</button>
+            <div id="formStatus" style="font-weight:700"></div>
+          </div>
+          <div style="margin-top:10px;color:var(--soft);font-size:13px">Note: For live email delivery add your Formspree endpoint in the script (see top comments).</div>
+        </form>
+      </div>
+    </section>
+
+    <footer class="container">
+      <div style="max-width:900px;margin:0 auto;color:var(--muted)">© <span id="year"></span> Mamatha Dharavath — Built with care • <span id="made">HTML • CSS • JavaScript</span></div>
+    </footer>
+  </main>
+
+  <script>
+    /* ------------------ Config ------------------ */
+    const NAME = 'Mamatha Dharavath';
+    const TAGLINE = 'Software Developer';
+    const FORMSPREE_ENDPOINT = ''; // <--- Put your Formspree endpoint URL here to enable real email sending
+
+    /* ------------------ Utilities ------------------ */
+    function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}
+
+    // Mobile nav toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click',()=>{navLinks.style.display = navLinks.style.display==='flex' ? 'none' : 'flex'})
+
+    // Populate year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle with persistence
+    const themeToggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if(saved) document.body.setAttribute('data-theme', saved);
+    function setTheme(t){document.body.setAttribute('data-theme', t);localStorage.setItem('theme', t)}
+    themeToggle.addEventListener('click',()=>{
+      const cur = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      setTheme(cur);
+      themeToggle.textContent = cur === 'light' ? '☀️  Theme' : '🌙  Theme';
+    });
+    // initial toggle text
+    themeToggle.textContent = document.body.getAttribute('data-theme') === 'light' ? '☀️  Theme' : '🌙  Theme';
+
+    /* ------------------ Typewriter effect ------------------ */
+    const typePhrases = ['Software Developer', 'Frontend • React', 'JavaScript Engineer'];
+    const typeEl = document.querySelector('.typeText');
+    let tIdx = 0, cIdx = 0, deleting = false;
+    function typeTick(){
+      const full = typePhrases[tIdx];
+      typeEl.textContent = full.slice(0, cIdx);
+      if(!deleting){
+        cIdx++;
+        if(cIdx > full.length){deleting = true; setTimeout(typeTick, 900); return}
+      } else {
+        cIdx--;
+        if(cIdx < 0){deleting=false;tIdx=(tIdx+1)%typePhrases.length;setTimeout(typeTick,300);return}
+      }
+      setTimeout(typeTick, deleting ? 80 : 120);
+    }
+    setTimeout(typeTick, 600);
+
+    /* ------------------ Projects (dynamic cards) ------------------ */
+    const projects = [
+      {title:'Twitter Clone',desc:'Full-stack Twitter clone with authentication and tweet/reply/follow/like APIs using Express.js and SQLite.',tags:['Express','SQLite','Auth'],url:'#'},
+      {title:'Gallery App',desc:'React gallery with thumbnail switching and accessibility-focused markup.',tags:['React','Accessibility'],url:'#'},
+      {title:'Todo API',desc:'REST API with filtering, validation and SQLite persistence.',tags:['Node','SQLite','APIs'],url:'#'},
+      {title:'Browser History UI',desc:'React app that displays, filters and deletes history items with tests included.',tags:['React','Testing'],url:'#'},
+      {title:'Reusable Banners',desc:'Dynamic banner rendering system for marketing pages.',tags:['React','Design'],url:'#'},
+      {title:'Portfolio Site',desc:'This very portfolio — single-file, responsive and themeable.',tags:['HTML','CSS','JS'],url:'#'}
+    ];
+
+    const grid = document.getElementById('projectsGrid');
+    function renderProjects(){
+      grid.innerHTML = '';
+      projects.forEach((p, i)=>{
+        const el = document.createElement('div'); el.className = 'project fade-in';
+        el.innerHTML = `<h3>${p.title}</h3><p>${p.desc}</p><div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div><div style="margin-top:12px"><a class="btn ghost" href="${p.url}">View</a></div>`;
+        grid.appendChild(el);
+      });
+    }
+    renderProjects();
+
+    /* ------------------ Scroll animations & scroll-spy ------------------ */
+    const faders = document.querySelectorAll('.fade-in, .slide-left');
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){entry.target.classList.add('show')}
+      })
+    },{threshold:0.12});
+    faders.forEach(f=>observer.observe(f));
+
+    // Scroll spy for nav links
+    const sections = document.querySelectorAll('main > section, header.hero');
+    const navLinksArray = document.querySelectorAll('[data-link]');
+    const spy = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        const id = entry.target.id;
+        const link = document.querySelector(`[href="#${id}"]`);
+        if(entry.isIntersecting){navLinksArray.forEach(a=>a.classList.remove('active')); if(link) link.classList.add('active')}
+      })
+    },{threshold:0.45});
+    sections.forEach(s=>spy.observe(s));
+
+    /* ------------------ Contact form handler ------------------ */
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      status.textContent = '';
+      const data = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        subject: form.subject.value.trim(),
+        message: form.message.value.trim()
+      };
+      if(!data.name || !data.email || !data.message){status.textContent = 'Please fill required fields';status.style.color='salmon';return}
+
+      // If user set a Formspree endpoint, send it there
+      if(FORMSPREE_ENDPOINT){
+        try{
+          const res = await fetch(FORMSPREE_ENDPOINT, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+          if(res.ok){form.reset();status.textContent='Message sent — thank you!';status.style.color='var(--accent)'}
+          else{throw new Error('Failed')}
+        }catch(err){status.textContent='Failed to send — try mailto fallback';status.style.color='salmon';}
+        return;
+      }
+
+      // Fallback: show message and prepare mailto link to copy
+      form.reset();
+      status.textContent = 'Message prepared — you can send via your email client.';
+      status.style.color = 'var(--accent)';
+      // create mailto link
+      const mailto = `mailto:youremail@gmail.com?subject=${encodeURIComponent(data.subject||'Portfolio contact')}&body=${encodeURIComponent('Name: '+data.name+'\n\n'+data.message)}`;
+      const a = document.createElement('a'); a.href = mailto; a.style.display='none'; document.body.appendChild(a); a.click(); a.remove();
+    });
+
+    /* ------------------ Small UX niceties ------------------ */
+    // Smooth scroll on nav clicks
+    document.querySelectorAll('[data-link]').forEach(a=>a.addEventListener('click', (e)=>{e.preventDefault(); const id = a.getAttribute('href').slice(1); scrollToSection(id); if(window.innerWidth<=700) navLinks.style.display='none'}));
+
+    // keyboard shortcut: t toggles theme
+    window.addEventListener('keydown', (e)=>{if(e.key.toLowerCase()==='t'){themeToggle.click()}});
+
+    // initial reveal for elements already on top
+    document.querySelectorAll('.fade-in').forEach(el=>el.classList.add('show'));
+
+  </script>
+</body>
+</html
